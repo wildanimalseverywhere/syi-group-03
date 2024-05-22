@@ -1,0 +1,1 @@
+-- SQL Schema zur Erstellung der Datenbank mit den entsprechenden Feldern

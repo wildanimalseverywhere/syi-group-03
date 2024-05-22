@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "SYI.Gruppe3.Apps.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

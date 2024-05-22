@@ -1,0 +1,6 @@
+@SYI.Gruppe3.Apps.Consumer.API_HostAddress = http://localhost:5062
+
+GET {{SYI.Gruppe3.Apps.Consumer.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
