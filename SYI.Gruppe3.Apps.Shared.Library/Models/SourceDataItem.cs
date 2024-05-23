@@ -19,8 +19,8 @@ namespace SYI.Gruppe3.Apps.Shared.Library.Models
         public string VehicleTypeCode2 { get; set; }
         public int ZipCode { get; set; }
         public int Hour { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public int Minute { get; set; }
         public int NumberOfPersonsInjured { get; set; }
         public int NumberOfPersonsKilled { get; set; }
