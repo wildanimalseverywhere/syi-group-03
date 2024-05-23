@@ -1,1 +1,19 @@
 -- SQL Schema zur Erstellung der Datenbank mit den entsprechenden Feldern
+CREATE TABLE DATA_SOURCE (
+    Borough NVARCHAR(MAX),
+    ContributingFactorVehicle1 NVARCHAR(MAX),
+    ContributingFactorVehicle2 NVARCHAR(MAX),
+    CrashDate DATE,
+    CrossStreetName NVARCHAR(MAX),
+    Location NVARCHAR(MAX),
+    OnStreetName NVARCHAR(MAX),
+    VehicleTypeCode1 NVARCHAR(MAX),
+    VehicleTypeCode2 NVARCHAR(MAX),
+    ZipCode INT,
+    Hour INT,
+    Latitude DECIMAL(9, 6),
+    Longitude DECIMAL(9, 6),
+    Minute INT,
+    NumberOfPersonsInjured INT,
+    NumberOfPersonsKilled INT
+);

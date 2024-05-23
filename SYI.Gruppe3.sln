@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 		SYI.Gruppe3.Apps.Infrastructure\SYI.Gruppe3.Apps.Infrastructure.SQL_Schema.txt = SYI.Gruppe3.Apps.Infrastructure\SYI.Gruppe3.Apps.Infrastructure.SQL_Schema.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{99B0D319-798A-43B0-B23D-8154A17870F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYI.Gruppe3.Apps.Shared.Library", "SYI.Gruppe3.Apps.Shared.Library\SYI.Gruppe3.Apps.Shared.Library.csproj", "{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,10 @@ Global
 		{7896A359-4714-4262-A370-166A4D40C349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7896A359-4714-4262-A370-166A4D40C349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7896A359-4714-4262-A370-166A4D40C349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{CF294A08-E95F-48C1-8373-FF43685001E2} = {D47109B5-84F7-472F-8050-085307E52482}
 		{610EF850-D5BF-46DC-BBBE-CBE01E1D08AE} = {A2E9C1AE-EA37-413B-BB66-D59A3EF4F865}
 		{7896A359-4714-4262-A370-166A4D40C349} = {A2E9C1AE-EA37-413B-BB66-D59A3EF4F865}
+		{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1} = {99B0D319-798A-43B0-B23D-8154A17870F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FE7F6FF-4710-41FE-BC22-D7511E2DF955}
