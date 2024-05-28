@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["SYI.Gruppe3.Apps.Worker/SYI.Gruppe3.Apps.Worker.csproj", "SYI.Gruppe3.Apps.Worker/"]
+COPY ["SYI.Gruppe3.Apps.Worker.csproj", "SYI.Gruppe3.Apps.Worker/"]
 RUN dotnet restore "SYI.Gruppe3.Apps.Worker/SYI.Gruppe3.Apps.Worker.csproj"
 COPY . .
 WORKDIR "/src/SYI.Gruppe3.Apps.Worker"
