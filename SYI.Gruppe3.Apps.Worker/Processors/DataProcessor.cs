@@ -141,6 +141,8 @@ namespace SYI.Gruppe3.Apps.Worker.Processors
 
 
             logger.LogInformation($"data insertion completed");
+
+            File.Delete(csvPath);
             return true; 
         }
 

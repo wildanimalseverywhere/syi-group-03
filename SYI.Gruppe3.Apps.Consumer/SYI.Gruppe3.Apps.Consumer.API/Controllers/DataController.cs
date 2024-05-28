@@ -20,7 +20,7 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
 
         [HttpGet]
         [Route("query")]
-        public async Task<object> Get([FromQuery] string borough = "", [FromQuery] int? yearFrom = null, [FromQuery] int? yearTo = null)
+        public async Task<DataResponseModel> Get([FromQuery] string borough = "", [FromQuery] int? yearFrom = null, [FromQuery] int? yearTo = null)
         {
             string query = $@"
  SELECT 

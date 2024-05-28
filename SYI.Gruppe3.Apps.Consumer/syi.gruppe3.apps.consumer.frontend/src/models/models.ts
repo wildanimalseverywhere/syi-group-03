@@ -11,8 +11,9 @@
 export module Models {
 
     export interface IFilterModel {
-        deadlyOnly: boolean;
-        yearFrom?: string | undefined;
+        deadlyOnly?: boolean | undefined;
+        yearTo?: number | undefined;
+        yearFrom?: number | undefined;
         borough?: string | undefined;
     }
 

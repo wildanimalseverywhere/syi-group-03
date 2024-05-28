@@ -30,18 +30,16 @@ function Chart1(props: { filter: Models.IFilterModel }) {
     else
         chartSqlQuery = chartSqlQuery + " having Injured > 1";
     chartSqlQuery = chartSqlQuery + ")";
-    
+
 
 
 
     useEffect(() => {
         setTimeout(async () => {
             const client = new ApiClient.Client();
-            const query = new ApiClient.DataQueryModel();
-            query.sqlQuery = chartSqlQuery;
-            const rawResponse = await client.query(query);
+            const rawResponse = await client.query(undefined, undefined, undefined);
             setQueryData(rawResponse);
-        }, 250)
+        }, 250);
     }, [chartSqlQuery]);
 
     const cityLat = [];
@@ -49,9 +47,9 @@ function Chart1(props: { filter: Models.IFilterModel }) {
     const hoverText = [];
     const citySize = [];
 
-    if (queryData !== undefined && queryData.data !== undefined) {
-        for (let i = 0; i < queryData?.data.length; i++) {
-            const currentRow = queryData.data[i];
+    if (queryData !== undefined && queryData.items !== undefined) {
+        for (let i = 0; i < queryData?.items.length; i++) {
+            const currentRow = queryData.items[i];
 
             const currentSize = (currentRow['Injured'] + currentRow['Killed']);
             const currentText = "Injured: " + currentRow['Injured'] + " Killed: " + currentRow['Killed'];
