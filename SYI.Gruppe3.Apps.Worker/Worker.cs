@@ -16,6 +16,7 @@ namespace SYI.Gruppe3.Apps.Worker
         public Worker(ILogger<Worker> logger)
         {
             _logger = logger;
+            _logger.LogInformation("WORKER IST HIER");
             var clientOptions = new ServiceBusClientOptions()
             {
                 TransportType = ServiceBusTransportType.AmqpWebSockets

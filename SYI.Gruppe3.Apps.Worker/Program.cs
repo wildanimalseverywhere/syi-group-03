@@ -7,11 +7,19 @@ namespace SYI.Gruppe3.Apps.Worker
             IHost host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
                 {
+                    services.AddLogging((opt) =>
+                    {
+                        opt.ClearProviders();
+                        opt.AddConsole();
+                    });
                     services.AddHostedService<Worker>();
                 })
                 .Build();
 
             host.Run();
+
+
+            Console.WriteLine("ICH BIN ONLINE");
         }
     }
 }
