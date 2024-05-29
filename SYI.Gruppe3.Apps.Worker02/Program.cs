@@ -15,9 +15,6 @@ namespace SYI.Gruppe3.Apps.Worker02
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-
-            app.UseHttpsRedirection();
 
            
 
