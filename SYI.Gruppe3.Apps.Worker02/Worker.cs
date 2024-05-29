@@ -1,9 +1,9 @@
 using Azure.Messaging.ServiceBus;
 using Newtonsoft.Json;
-using SYI.Gruppe3.Apps.Worker.Models;
-using SYI.Gruppe3.Apps.Worker.Processors;
+using SYI.Gruppe3.Apps.Worker02.Models;
+using SYI.Gruppe3.Apps.Worker02.Processors;
 
-namespace SYI.Gruppe3.Apps.Worker
+namespace SYI.Gruppe3.Apps.Worker02
 {
     public class Worker : BackgroundService
     {
@@ -16,7 +16,7 @@ namespace SYI.Gruppe3.Apps.Worker
         public Worker(ILogger<Worker> logger)
         {
             _logger = logger;
-            _logger.LogInformation("WORKER IST HIER");
+            _logger.LogInformation("WORKER IST ONLINE! :-)");
             var clientOptions = new ServiceBusClientOptions()
             {
                 TransportType = ServiceBusTransportType.AmqpWebSockets

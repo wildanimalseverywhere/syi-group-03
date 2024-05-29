@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SYI.Gruppe3.Apps.Worker.Models
+namespace SYI.Gruppe3.Apps.Worker02.Models
 {
     public class QueueInputModel
     {

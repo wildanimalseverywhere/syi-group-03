@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SYI.Gruppe3.Apps.Worker.Processors
+namespace SYI.Gruppe3.Apps.Worker02.Processors
 {
     public class DataProcessor
     {

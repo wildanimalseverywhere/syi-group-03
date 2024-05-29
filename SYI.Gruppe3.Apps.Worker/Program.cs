@@ -4,15 +4,12 @@ namespace SYI.Gruppe3.Apps.Worker
     {
         public static void Main(string[] args)
         {
-            IHost host = Host.CreateDefaultBuilder(args)
+             
+
+            var builder = WebApplication.CreateBuilder(args)
                 .ConfigureServices(services =>
                 {
-                    services.AddLogging((opt) =>
-                    {
-                        opt.ClearProviders();
-                        opt.AddConsole();
-                    });
-                    services.AddHostedService<Worker>();
+
                 })
                 .Build();
 
