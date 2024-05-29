@@ -11,7 +11,7 @@ namespace SYI.Gruppe3.Apps.Worker02
                 opt.ClearProviders();
                 opt.AddConsole();
             });
-            //builder.Services.AddHostedService<Worker>();
+            builder.Services.AddHostedService<Worker>();
 
             var app = builder.Build();
 
