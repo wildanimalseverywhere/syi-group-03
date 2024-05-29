@@ -10,6 +10,7 @@ namespace SYI.Gruppe3.Apps.Worker02
             {
                 opt.ClearProviders();
                 opt.AddConsole();
+               
             });
             builder.Services.AddHostedService<Worker>();
 
