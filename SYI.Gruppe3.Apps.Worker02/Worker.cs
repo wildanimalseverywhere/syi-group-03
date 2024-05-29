@@ -8,8 +8,8 @@ namespace SYI.Gruppe3.Apps.Worker02
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly ServiceBusClient _client;
-        private readonly ServiceBusProcessor _processor;
+        private ServiceBusClient _client;
+        private ServiceBusProcessor _processor;
         private string NAMESPACE_CONNECTION_STRING = Environment.GetEnvironmentVariable("NAMESPACE_CONNECTION_STRING");
         private string QUEUE_NAME = Environment.GetEnvironmentVariable("QUEUE_NAME");
 
@@ -17,12 +17,6 @@ namespace SYI.Gruppe3.Apps.Worker02
         {
             _logger = logger;
             _logger.LogInformation("WORKER IST ONLINE! :-)");
-            var clientOptions = new ServiceBusClientOptions()
-            {
-                TransportType = ServiceBusTransportType.AmqpWebSockets
-            };
-            _client = new ServiceBusClient(NAMESPACE_CONNECTION_STRING, clientOptions);
-            _processor = _client.CreateProcessor(QUEUE_NAME, new ServiceBusProcessorOptions());
 
         }
         private async Task HandleMessage(ProcessMessageEventArgs args)
@@ -47,10 +41,24 @@ namespace SYI.Gruppe3.Apps.Worker02
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _processor.ProcessMessageAsync += HandleMessage;
-            _processor.ProcessErrorAsync += ErrorHandler;
-            await _processor.StartProcessingAsync();
-            _logger.LogInformation("Queue subscription has been launched");
+            try
+            {
+                var clientOptions = new ServiceBusClientOptions()
+                {
+                    TransportType = ServiceBusTransportType.AmqpWebSockets
+                };
+                _client = new ServiceBusClient(NAMESPACE_CONNECTION_STRING, clientOptions);
+                _processor = _client.CreateProcessor(QUEUE_NAME, new ServiceBusProcessorOptions());
+                _processor.ProcessMessageAsync += HandleMessage;
+                _processor.ProcessErrorAsync += ErrorHandler;
+                await _processor.StartProcessingAsync();
+                _logger.LogInformation("Queue subscription has been launched");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "fehler bei der initialisierung des workers..");
+                return;
+            }
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Waiting for queue item...");
