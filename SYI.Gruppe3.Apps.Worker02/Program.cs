@@ -11,7 +11,7 @@ namespace SYI.Gruppe3.Apps.Worker02
                 opt.ClearProviders();
                 opt.AddConsole();
             });
-            builder.Services.AddHostedService<Worker>();
+            //builder.Services.AddHostedService<Worker>();
 
             var app = builder.Build();
 
@@ -20,11 +20,12 @@ namespace SYI.Gruppe3.Apps.Worker02
 
             app.MapGet("/", (HttpContext httpContext) =>
             {
-                return Task.FromResult(new
+                return Results.Json(new
                 {
-                    alive = true, 
+                    alive = true,
                     message = "hallo - ich bin die worker app und bin online"
                 });
+      
             });
 
             app.Run();
