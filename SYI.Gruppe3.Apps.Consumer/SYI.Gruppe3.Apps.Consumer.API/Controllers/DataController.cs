@@ -43,6 +43,10 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
                     query = query + " WHERE ";
                     hasWhere = true;
                 }
+                else
+                {
+                    query = query + " AND ";
+                }
                 query = query + " Borough = @Borough ";
             }
             if (yearFrom != null || yearTo != null)
