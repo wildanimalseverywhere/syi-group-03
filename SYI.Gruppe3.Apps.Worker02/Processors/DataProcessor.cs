@@ -94,6 +94,8 @@ namespace SYI.Gruppe3.Apps.Worker02.Processors
                 NewLine = Environment.NewLine,
                 Delimiter = ",",
                 Encoding = System.Text.Encoding.UTF8, 
+                DetectDelimiter = true, 
+                HasHeaderRecord = true, 
                
             };
 
