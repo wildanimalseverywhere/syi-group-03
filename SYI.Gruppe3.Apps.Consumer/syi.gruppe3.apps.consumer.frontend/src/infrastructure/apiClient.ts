@@ -24,9 +24,10 @@ export module ApiClient {
          * @param borough (optional) 
          * @param yearFrom (optional) 
          * @param yearTo (optional) 
+         * @param deadlyOnly (optional) 
          * @return Success
          */
-        query(borough: string | undefined, yearFrom: number | undefined, yearTo: number | undefined): Promise<DataResponseModel> {
+        query(borough: string | undefined, yearFrom: number | undefined, yearTo: number | undefined, deadlyOnly: boolean | undefined): Promise<DataResponseModel> {
             let url_ = this.baseUrl + "/api/data/query?";
             if (borough === null)
                 throw new Error("The parameter 'borough' cannot be null.");
@@ -40,6 +41,10 @@ export module ApiClient {
                 throw new Error("The parameter 'yearTo' cannot be null.");
             else if (yearTo !== undefined)
                 url_ += "yearTo=" + encodeURIComponent("" + yearTo) + "&";
+            if (deadlyOnly === null)
+                throw new Error("The parameter 'deadlyOnly' cannot be null.");
+            else if (deadlyOnly !== undefined)
+                url_ += "deadlyOnly=" + encodeURIComponent("" + deadlyOnly) + "&";
             url_ = url_.replace(/[?&]$/, "");
 
             let options_: RequestInit = {
@@ -78,6 +83,7 @@ export module ApiClient {
         numberOfPersonsInjured?: number;
         numberOfPersonsKilled?: number;
         year?: number;
+        readonly count?: number;
 
         constructor(data?: IDataResponseItem) {
             if (data) {
@@ -94,6 +100,7 @@ export module ApiClient {
                 this.numberOfPersonsInjured = _data["numberOfPersonsInjured"];
                 this.numberOfPersonsKilled = _data["numberOfPersonsKilled"];
                 this.year = _data["year"];
+                (<any>this).count = _data["count"];
             }
         }
 
@@ -110,6 +117,7 @@ export module ApiClient {
             data["numberOfPersonsInjured"] = this.numberOfPersonsInjured;
             data["numberOfPersonsKilled"] = this.numberOfPersonsKilled;
             data["year"] = this.year;
+            data["count"] = this.count;
             return data;
         }
     }
@@ -119,6 +127,7 @@ export module ApiClient {
         numberOfPersonsInjured?: number;
         numberOfPersonsKilled?: number;
         year?: number;
+        count?: number;
     }
 
     export class DataResponseModel implements IDataResponseModel {

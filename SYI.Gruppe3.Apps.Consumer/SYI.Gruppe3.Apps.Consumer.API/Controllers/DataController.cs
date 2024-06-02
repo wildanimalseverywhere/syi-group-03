@@ -20,7 +20,7 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
 
         [HttpGet]
         [Route("query")]
-        public async Task<DataResponseModel> Get([FromQuery] string borough = "", [FromQuery] int? yearFrom = null, [FromQuery] int? yearTo = null)
+        public async Task<DataResponseModel> Get([FromQuery] string borough = "", [FromQuery] int? yearFrom = null, [FromQuery] int? yearTo = null, [FromQuery] bool? deadlyOnly = null)
         {
             string query = $@"
  SELECT 
@@ -31,16 +31,26 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
             FROM DATA_SOURCE";
 
             bool hasWhere = false;
+            if(deadlyOnly != null && deadlyOnly.Value == true)
+            {
+                query = query + " WHERE NumberOfPersonsKilled > 0 ";
+                hasWhere = true;
+            }
             if (!String.IsNullOrEmpty(borough))
             {
-                query = query + " WHERE Borough = @Borough ";
-                hasWhere = true;
+                if (!hasWhere)
+                {
+                    query = query + " WHERE ";
+                    hasWhere = true;
+                }
+                query = query + " Borough = @Borough ";
             }
             if (yearFrom != null || yearTo != null)
             {
                 if (!hasWhere)
                 {
                     query = query + " WHERE ";
+                    hasWhere = true;
                 }
                 else
                 {
@@ -60,6 +70,7 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
 
             DataResponseModel result = new DataResponseModel()
             {
+
                 Items = new List<DataResponseItem>(),
                 RenderedSQLQuery = query,
             };
@@ -96,7 +107,7 @@ namespace SYI.Gruppe3.Apps.Consumer.API.Controllers
                 }
             }
 
-            return result;
+            return result.FinalizeResult();
         }
     }
 }

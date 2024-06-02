@@ -94,6 +94,7 @@ namespace SYI.Gruppe3.Apps.Worker02.Processors
                 NewLine = Environment.NewLine,
                 Delimiter = ",",
                 Encoding = System.Text.Encoding.UTF8, 
+               
             };
 
             logger.LogInformation($"opening csv file...");
@@ -101,7 +102,6 @@ namespace SYI.Gruppe3.Apps.Worker02.Processors
             {
                 using (var csv = new CsvReader(reader, config))
                 {
-
                     var sourceList = csv.GetRecords<SourceDataItem>();
                     //Console.WriteLine($"items to insert: {sourceList.Count()}");
                     int index = 0;

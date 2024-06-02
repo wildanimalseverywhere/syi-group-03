@@ -8,7 +8,7 @@ import { ApiClient } from '../infrastructure/apiClient';
 import { Models } from '../models/models';
 function Chart2(props: { filter: Models.IFilterModel }) {
 
-
+    console.log(props);
     function groupBy(list: { [key: string]: any }[], keyGetter: any) {
         const map = new Map();
         list.forEach((item) => {
@@ -20,64 +20,42 @@ function Chart2(props: { filter: Models.IFilterModel }) {
                 collection.push(item);
             }
         });
+        console.log(map);
         return map;
     }
 
-
-    const [queryData, setQueryData] = useState<ApiClient.DataResponseModel | undefined>();
-
-    let chartSqlQuery = "select Borough, extract('YEAR' from Crashdate) as Year,";
-
-    if (props !== undefined && props.filter !== undefined && props.filter.deadlyOnly === true) {
-        chartSqlQuery = chartSqlQuery + " fsum(NumberOfPersonsKilled) as Count ";
-    }
-    else {
-        chartSqlQuery = chartSqlQuery + " fsum(NumberOfPersonsInjured) as Count  ";
-    }
-    chartSqlQuery = chartSqlQuery + " from data";
-
-    if (props !== undefined && props.filter !== undefined) {
-        if (props.filter.borough !== undefined && props.filter.borough !== '') {
-            chartSqlQuery = chartSqlQuery + " where Borough == '" + props.filter.borough + "'";
-        }
-    }
-
-    chartSqlQuery = chartSqlQuery + " group by Year, Borough";
+    const [queryData, setQueryData] = useState<ApiClient.DataResponseModel>();
 
 
-    chartSqlQuery = "select * from (" + chartSqlQuery + ")";
 
     useEffect(() => {
         async function fetchData() {
             const client = new ApiClient.Client();
-            const query = new ApiClient.DataQueryModel();
-            query.sqlQuery = chartSqlQuery;
-            query.orderBy = "Year";
-            query.limitOverride = 4999;
-            const rawResponse = await client.query(query);
+
+            const rawResponse = await client.query(props?.filter?.borough, props?.filter?.yearFrom, props?.filter?.yearTo, props?.filter?.deadlyOnly);
             setQueryData(rawResponse);
         }
         fetchData();
-    }, [chartSqlQuery]);
+    }, [props.filter]);
 
     const yAll = Array<any>();
 
-    if (queryData !== undefined && queryData.data !== undefined) {
+    if (queryData !== undefined && queryData.items !== undefined) {
 
-        const affectedArray = groupBy(queryData?.data, t => t['Borough']);
+        const affectedArray = groupBy(queryData.items, t => t.borough);
 
         for (const [key, value] of affectedArray.entries()) {
-            const years = value.map(f => new Date(f['Year'], 1, 1)).sort((a: Date, b: Date): number => a.getTime() - b.getTime())
+            const years = value.map(f => new Date(f.year, 1, 1)).sort((a: Date, b: Date): number => a.getTime() - b.getTime())
             yAll.push({
                 type: "scatter",
                 mode: "lines",
                 name: key,
                 x: years,
-                y: value.map(f => f['Count']),
+                y: value.map(f => f.count),
                 line: {
                     color: "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16) })
                 }
-            })
+            });
         }
 
 
@@ -85,7 +63,7 @@ function Chart2(props: { filter: Models.IFilterModel }) {
 
 
     const data = yAll;
-
+    console.log(data);
     const layout = {
         title: 'Injury / Kill History per Borough',
         xaxis: {
@@ -108,7 +86,6 @@ function Chart2(props: { filter: Models.IFilterModel }) {
                     { step: 'all' }
                 ]
             },
-            rangeslider: { range: ['2012-01-01', '2024-01-01'] },
             type: 'date'
         },
         yaxis: {

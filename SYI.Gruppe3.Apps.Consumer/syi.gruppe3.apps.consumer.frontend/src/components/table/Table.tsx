@@ -3,8 +3,8 @@ import { ApiClient } from '../../infrastructure/apiClient';
 function Table(props: { data: ApiClient.DataResponseModel | undefined }) {
 
     return (
-        (props === undefined || props.data === undefined || props.data.data === undefined) ? null :
-            props.data.data.length === 0 ?
+        (props === undefined || props.data === undefined || props.data.items === undefined) ? null :
+            props.data.items.length === 0 ?
                 <p>No data to display</p>
                 :
                 <div className="row">
@@ -14,7 +14,7 @@ function Table(props: { data: ApiClient.DataResponseModel | undefined }) {
                                 <tr>
 
                                     {
-                                        Object.keys(props.data.data[0]).map(t =>
+                                        Object.keys(props.data.items[0]).map(t =>
                                             <th style={{ border: '0.5px solid black' }}>
                                                 {t}
                                             </th>)
@@ -24,7 +24,7 @@ function Table(props: { data: ApiClient.DataResponseModel | undefined }) {
                             </thead>
                             <tbody>
                                 {
-                                    props.data.data.map(t =>
+                                    props.data.items.map(t =>
                                         <tr>
                                             {
                                                 Object.values(t).map(f => <td> {f}</td>)
