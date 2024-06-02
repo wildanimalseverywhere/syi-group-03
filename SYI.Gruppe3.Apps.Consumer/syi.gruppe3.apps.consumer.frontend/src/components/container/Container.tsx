@@ -75,7 +75,7 @@ function Container() {
                         STATEN ISLAND
                     </option>
                 </select>
-                <label style={{ paddingRight: '5px' }} style={{ paddingRight: '5px' }}>Year From:</label>
+                <label style={{ paddingRight: '5px' }} >Year From:</label>
                 <select style={{ paddingRight: '5px' }} onChange={(event: any) => {
                     const value = event.target.value;
                     setFilterModel({

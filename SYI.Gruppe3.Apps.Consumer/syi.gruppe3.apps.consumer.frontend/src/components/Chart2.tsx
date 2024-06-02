@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Plot from 'react-plotly.js';
-import Table from './table/Table';
-import Panel from './panel/Panel';
+
+import  Plot  from 'react-plotly.js';
+import  Table  from './table/Table';
+import  Panel  from './panel/Panel';
 import { useEffect, useState } from 'react';
 import { ApiClient } from '../infrastructure/apiClient';
 import { Models } from '../models/models';
@@ -96,11 +98,11 @@ function Chart2(props: { filter: Models.IFilterModel }) {
     };
 
 
-
     return (
         <div>
             <Plot
                 data={data}
+                //@ts-ignore
                 layout={layout}
             ></Plot>
             <Panel data={queryData}>
