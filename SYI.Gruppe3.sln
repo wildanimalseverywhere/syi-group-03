@@ -20,7 +20,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{99B0D3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYI.Gruppe3.Apps.Shared.Library", "SYI.Gruppe3.Apps.Shared.Library\SYI.Gruppe3.Apps.Shared.Library.csproj", "{FD14DBAB-59B2-46CF-B3A3-54F8AFD9E2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYI.Gruppe3.Apps.Worker02", "SYI.Gruppe3.Apps.Worker02\SYI.Gruppe3.Apps.Worker02.csproj", "{E7C2A47C-FB7B-494D-ABE0-AB23D08ABD47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYI.Gruppe3.Apps.Worker02", "SYI.Gruppe3.Apps.Worker02\SYI.Gruppe3.Apps.Worker02.csproj", "{E7C2A47C-FB7B-494D-ABE0-AB23D08ABD47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestFiles", "TestFiles", "{DD86D35C-56E9-4DCD-A80E-60E170F43EB3}"
+	ProjectSection(SolutionItems) = preProject
+		TestFiles\test_02.csv = TestFiles\test_02.csv
+		TestFiles\test_03.csv = TestFiles\test_03.csv
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
