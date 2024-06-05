@@ -47,7 +47,7 @@ export default defineConfig({
                 target,
                 secure: false
             },
-            '^/weatherforecast': {
+            '^/swagger/*': {
                 target,
                 secure: false
             }
